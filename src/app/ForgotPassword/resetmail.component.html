@@ -1,0 +1,51 @@
+<form #myForm="ngForm">
+ <div class="app flex-row align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Reset Password</strong>
+        </div>
+        <div class="card-block">
+           <div class="alert alert-success" *ngIf="success">
+                <strong>Success!</strong> Reset password link send your mail.
+              </div>
+              <div class="alert alert-danger" *ngIf="failed">
+                <strong>Failed!</strong> {{invalidmsg}}
+              </div>
+          <!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="ccnumber">Email</label> 
+                 <input type="email" class="form-control" [(ngModel)]="email" name="email" #userEmail="ngModel" required placeholder="Email"
+                  email pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="agree" name="agree" [checked]="temporary" (change)="temporary=!temporary"> 
+                  Temporary user
+              </label>
+            </div>
+          </div>
+
+          
+           <div class="form-actions">
+              <button type="button" (click)="UpdatePassword(myForm)" class="btn btn-primary">Send</button>
+             
+            </div>
+          <!--/.row-->
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+    </div>
+
+ 
+</form>

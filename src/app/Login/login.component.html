@@ -1,0 +1,70 @@
+<div class="app flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card-group mb-0">
+          <div class="card p-2">
+         
+            <div class="card-block">
+              <h1>Login</h1>
+              <p class="text-muted">Sign In to your account</p>
+               <div class="alert alert-success" *ngIf="success">
+                <strong>Success!</strong>Login
+              </div>
+                <div class="alert alert-danger" *ngIf="failed">
+                <strong>Failed!</strong>Invalid username and password
+              </div>
+              <div class="input-group mb-1">
+                <span class="input-group-addon"><i class="icon-user"></i></span>
+                <input type="text" class="form-control" [(ngModel)]="username" (focusout)="focusOutFunction()" placeholder="Username/Email ">
+              </div>
+              <div class="input-group mb-2">
+                <span class="input-group-addon"><i class="icon-lock"></i></span>
+                <input type="password" class="form-control" [(ngModel)]="password" placeholder="Password">
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <button type="button" class="btn btn-primary px-2"(click)="Login(username,password)" >Login</button>
+                </div>
+                <div class="col-6 text-right">
+                  <button type="button" (click)="forgotpassword()" class="btn btn-link px-0">Forgot password?</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-inverse card-primary py-3 hidden-md-down" style="width:44%">
+            <div class="card-block text-center">
+              <div>
+                <h2>Online Travel Managment</h2>
+              
+                <button type="button" class="btn btn-primary active mt-1" (click)="Register()" >Register Now!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loader" *ngIf="isLoader" role="alertdialog" aria-busy="true" aria-live="assertive"> 
+  <img src="./assets/img/Spinner.gif" alt="Processing... please wait" title=""/>
+</div>
+<style>
+       .loader{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background-color:rgba(256,256,256,0.4);
+}
+.loader img{
+	position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+  </style>

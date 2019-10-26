@@ -1,0 +1,88 @@
+
+
+  
+<div class="animated fadeIn">
+   
+
+  <div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block pb-0">
+          <div class="btn-group float-right" dropdown placement="bottom right">
+            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
+              <i class="icon-settings"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                <a class="dropdown-item" >Total Member List</a>
+            </div>
+          </div>
+          <h4 class="mb-0">{{dashboard.UserCount}}</h4>
+          <p>No of Bookings</p>
+        </div>
+         <div class="chart-wrapper px-1" style="height:70px;">
+          <!-- <canvas baseChart class="chart"
+          [datasets]="lineChart1Data"
+          [labels]="lineChart1Labels"
+          [options]="lineChart1Options"
+          [colors]="lineChart1Colours"
+          [legend]="lineChart1Legend"
+          [chartType]="lineChart1Type"
+          (chartHover)="chartHovered(PPevent)"
+          (chartClick)="chartClicked(PPevent)"></canvas> -->
+        </div>
+      </div>
+    </div><!--/.col-->
+   
+     <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-warning">
+        <div class="card-block pb-0">
+          <div class="btn-group float-right">
+            <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="icon-settings"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+          
+            </div>
+          </div> 
+          <h4 class="mb-0">{{dashboard.sp}} </h4>
+         
+          <p>Total Rides Available</p>
+        </div>
+        <div class="chart-wrapper" style="height:70px;">
+     
+        </div> 
+      </div> 
+    </div>
+    
+     
+    <div class="card">
+      <div class="card-block">
+        <div class="row">
+          <div class="col-sm-12">
+              <p-dataTable [value]="grid" [globalFilter]="gb" [rows]="40" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[20,40,60]"
+              [responsive]="true" #dt [stacked]="stacked">
+              <p-header>
+                <div class="ui-helper-clearfix">
+                  <button class="btn btn-outline-success active" style="float:left" type="button" iconPos="left" label="CSV" (click)="dt.exportCSV()">Export</button>
+                </div>
+              </p-header>
+              <p-column field="Trip" header="Location" [sortable]="true"></p-column>
+              <p-column field="startDate" header="Start Date" [sortable]="true"></p-column>
+              <p-column field="isBooked" header="amount" [sortable]="true"></p-column>
+              
+        
+            
+            </p-dataTable>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+<style>
+  .text-muted {
+    color: #374767 !important;
+}
+a{
+  color:black !important
+}
+  </style>

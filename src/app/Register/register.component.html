@@ -1,0 +1,132 @@
+<form #myForm="ngForm">
+  <div class="app flex-row align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card mx-2">
+            <div class="card-block p-2">
+              <h1>Register</h1>
+              <p class="text-muted">Create your account</p>
+              <div class="alert alert-success" *ngIf="success">
+                <strong>Success!</strong> Account successfully created
+              </div>
+
+              <div class="alert alert-danger" *ngIf="failed">
+                <strong>Failed!</strong> Please fill the all the details.
+              </div>
+               <div class="alert alert-danger" *ngIf="invalid">
+                <strong>Failed!</strong> {{invalidmsg}}
+              </div>
+
+
+              
+              <div class="input-group mb-1" [ngClass]="{ 'has-danger' :user.touched && !user.valid  }">
+                <span class="input-group-addon"><i class="icon-user"></i></span>
+                <input type="text" class="form-control" [(ngModel)]="username" name="username" #user="ngModel" required placeholder="Name">
+              </div>
+              <div class="help-block text-danger margin-top" *ngIf="user.touched && !user.valid">username is required</div>
+
+              <div class="input-group mb-1" [ngClass]="{ 'has-danger' :userEmail.touched && !userEmail.valid  }">
+                <span class="input-group-addon">@</span>
+                <input type="email" class="form-control" [(ngModel)]="email" name="email" #userEmail="ngModel" required placeholder="Email"
+                  email pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+              </div>
+               
+              <div class="help-block text-danger margin-top" *ngIf="userEmail.touched && !userEmail?.valid">Email is invalid</div>
+
+
+
+              <div class="input-group mb-1">
+                <span class="input-group-addon"><i class="icon-lock"></i></span>
+                <input type="password" class="form-control" [(ngModel)]="userpassword" #password="ngModel" id="password" name="password"
+                  placeholder="Password">
+              </div>
+                <div class="help-block text-danger margin-top" [hidden]="!(password.touched && password.length>7)">Must be at least 8 characters</div>
+
+
+              <div class="input-group mb-2">
+                <span class="input-group-addon"><i class="icon-lock"></i></span>
+                <input type="password" class="form-control" [(ngModel)]="rptpassword" #confirmpassword="ngModel" id="rptpassword" validateEqual="password"
+                  name="rptpassword" placeholder="Repeat password">
+              </div>
+                <div class="help-block text-danger margin-top" [hidden]="!(confirmpassword.touched && confirmpassword.length>7)">Must be at least 8 characters</div>
+
+              <div class="help-block text-danger margin-top" [hidden]="confirmpassword.valid">
+                Passwords did not match</div>
+               
+              <!-- <div class="input-group mb-2">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <select id="select" name="select" [(ngModel)]="personSales" name="personSales" class="form-control input-lg" size="1">
+                  <option value="0" selected>Please select</option>
+                  <option value="1">People</option>
+                  <option value="2">Purchase</option>
+                </select>
+              </div> -->
+
+              <div class="input-group mb-2" [hidden]="!(personSales==2) ">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-shopping-cart"></i></span>
+                <input type="text" class="form-control" [(ngModel)]="noOfPurchase" name="noOfPurchase" placeholder="No of Purchase">
+              </div>
+              
+              <div  class="input-group mb-1" >
+                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                <input type="text" class="form-control"  [(ngModel)]="phone" name="phone"   minlength="10" maxlength="10"  #phoneId="ngModel" required placeholder="Phone">
+              </div>
+               <div class="help-block text-danger margin-top" [hidden]="!phoneId.hasError('minlength')">Mobile should be 10 digits</div>
+              <div class="input-group mb-2" [ngClass]="{ 'has-danger' :amt.touched && !amt.valid  }">
+                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                <input type="number" class="form-control" [(ngModel)]="amount" disabled name="amount" #amt="ngModel" required  placeholder="Amount">
+              </div>
+              <div class="help-block text-danger margin-top" *ngIf="amt.touched && !amt.valid">amount is required</div>
+             
+              <div class="form-group">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="agree" name="agree" [checked]="agree" (change)="agree=!agree"> Please agree here that you have read the terms of the
+                      <a href="#">Please acept terms and conditions</a>
+                  </label>
+                </div>
+              </div>
+              <div class="input-group mb-1">
+                  
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-block btn-success"  (click)="tempRegister(myForm)">Register</button>
+                      </div>
+            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+      
+
+   <div class="loader" *ngIf="isLoader" role="alertdialog" aria-busy="true" aria-live="assertive"> 
+        <img src="./assets/img/Spinner.gif" alt="Processing... please wait" title=""/>
+    </div>
+  <style>
+       .loader{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background-color:rgba(256,256,256,0.4);
+}
+.loader img{
+	position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+  </style>
+</form>
