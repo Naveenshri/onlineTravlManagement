@@ -16,12 +16,7 @@ export class RegisterComponent implements OnInit {
   spName:string;
   sucessmsg: any;
   success: boolean = false;
-  c = [
-        { id: 1, name: 'Volvo' },
-        { id: 2, name: 'Saab', disabled: true },
-        { id: 3, name: 'Opel' },
-        { id: 4, name: 'Audi' },
-    ]
+ 
   preRegister: boolean = false;
   isLoader:boolean = false;
   personSales:any;

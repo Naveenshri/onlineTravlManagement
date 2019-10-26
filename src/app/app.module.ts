@@ -24,7 +24,6 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './Login/login.component';
 import { RegisterComponent } from './Register/register.component';
 import { EqualValidator } from './common/validation';
-
 import { ForgotPwdComponent } from './ForgotPassword/forgot-password.component';
 import { ResetmailComponent } from './ForgotPassword/resetmail.component';
 import { QRCodeModule } from 'angular2-qrcode';

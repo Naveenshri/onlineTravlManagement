@@ -89,9 +89,10 @@
           <button class="btn btn-outline-success active" style="float:left" type="button" iconPos="left" label="CSV" (click)="dt.exportCSV()">Export</button>
         </div>
       </p-header>
-      <p-column field="Trip" header="Location" [sortable]="true"></p-column>
+      <p-column field="Trip" header="From Location" [sortable]="true"></p-column>
+      <p-column field="ToLocation" header="To Location" [sortable]="true"></p-column>
       <p-column field="startDate" header="Start Date" [sortable]="true"></p-column>
-      <p-column field="isBooked" header="amount" [sortable]="true"></p-column>
+      <p-column field="amt" header="amount" [sortable]="true"></p-column>
       <p-column styleClass="col-button"   >
           <ng-template let-car="rowData" pTemplate="body">
                 <button type="button" class="btn btn-danger"    (click)="book(car);" >Book</button>
@@ -116,7 +117,7 @@
     <div class="modal-dialog modal-info" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<h4 class="modal-title">Add Member</h4>
+<h4 class="modal-title">Add Trip</h4>
 <button aria-label="Close" class="close" (click)="myModal.hide()" type="button">
 <span aria-hidden="true">×</span>
 </button>
@@ -130,6 +131,12 @@
 <input type="text" class="form-control" [(ngModel)]="username" name="username" #user="ngModel" required placeholder="Trip Location">
 </div>
 
+<div class="input-group mb-1" [ngClass]="{ 'has-danger' :user.touched && !user.valid  }">
+  <span class="input-group-addon"><i class="icon-user"></i></span>
+  <input type="text" class="form-control" [(ngModel)]="tolocation" name="username1" #user1="ngModel" required placeholder="To Location">
+  </div>
+  
+
 
 <div class="input-group mb-1" >
 <span class="input-group-addon"></span>
@@ -140,8 +147,8 @@
 
 <div class="input-group mb-1" >
  <span class="input-group-addon"><i class="fa-phone"></i></span>
- <input type="text" class="form-control" [(ngModel)]="phone" name="phone"
-   #userphone="ngModel" required placeholder="Phone">
+ <input type="text" class="form-control" [(ngModel)]="amt" name="phone1"
+   #userphone1="ngModel" required placeholder="Amount">
 </div>
 
 
@@ -164,7 +171,7 @@
 <input type="text" class="form-control" [(ngModel)]="address2" name="address2" placeholder="Address 2">
 </div>-->
 <div class="input-group mb-1">
-<button type="button" class="btn btn-block btn-success" (click)="Register(myForm);">Add Trip</button>
+<button type="button" class="btn btn-block btn-success" (click)="Register(myForm);myModal.hide();">Add Trip</button>
 </div>
 </div>
 <div class="modal-footer">

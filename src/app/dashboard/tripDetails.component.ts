@@ -12,11 +12,12 @@ import 'rxjs/Rx';
 export class TripDetailsComponent implements OnInit {
   dashboard:any={}
   showchart:boolean=false;
-  chartData:any[]
+  grid:any[]
   chart:boolean=true;
   phone:any;
   invalid:any;cl
-  grid:any;
+  tolocation:any;
+  amt:String="0";
   stacked:any;
   gb:any;
   referalAmt:any;
@@ -67,29 +68,34 @@ export class TripDetailsComponent implements OnInit {
     let parms={
        startDate:this.date1,
        EndDate:new Date(),
-       tripLocation:this.username
+       tripLocation:this.username,
+       tolocation:this.tolocation,
+       amt:this.amt
     }
     this.httpService.post('travelService/tripInsert',parms).subscribe(data => {
        //this.filterGrid(data);
        console.log(data);
+       this.formload();
        this.commonService.Loader(false);
     }, error => {
       this.commonService.Loader(false);
     });
   }
  
- 
+ formload() {
+  this.role=window.localStorage.role;
+  this.commonService.Loader(true);
+  this.httpService.get('travelService/tripDetails').subscribe(data => {
+    this.grid=data.message;
+    this.dashboard.count=data.bcount;
+     this.commonService.Loader(false);
+  }, error => {
+    this.commonService.Loader(false);
+  });
+ }
   ngOnInit(): void {
-    this.role=window.localStorage.role;
-    this.commonService.Loader(true);
-    this.httpService.get('travelService/tripDetails').subscribe(data => {
-      this.grid=data.message;
-      this.dashboard.count=data.bcount;
-       this.commonService.Loader(false);
-    }, error => {
-      this.commonService.Loader(false);
-    });
-
+   
+      this.formload();
    
     //generate random values for mainChart
    
