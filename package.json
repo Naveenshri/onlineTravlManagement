@@ -36,7 +36,7 @@
     "core-js": "2.4.1",
     "cors": "^2.8.4",
     "dragula": "3.7.2",
-    "moment": "2.18.1",
+    "moment": "2.29.4",
     "ng-chat": "^1.0.15",
     "ng2-ace-editor": "^0.3.1",
     "ng2-bootstrap": "1.6.1",
